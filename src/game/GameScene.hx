@@ -6,7 +6,13 @@ package;
 class GameScene extends h2d.Scene {
 
   var physics : phy.PhysicsManager;
-  
+
+  public var GRID(get, never) : Int;
+ 
+  function get_GRID() {
+    return 32;
+  }
+
   // LDTK Level Data
   public var cWid(default, null): Int = 0;
   public var cHei(default, null): Int = 0;
