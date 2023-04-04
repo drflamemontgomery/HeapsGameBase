@@ -1,6 +1,8 @@
 package node;
 
-class CharacterBody extends GameObject {
+
+
+class CharacterBody extends Node {
 
   public var debugDraw(default, set) : Bool = false;
   var debugBounds : h2d.Tile;
@@ -27,7 +29,7 @@ class CharacterBody extends GameObject {
   var w : Float = 1.0;
   var h : Float = 1.0;
 
-  public function new( ?parent : GameObject, x : Int = 3, y : Int = 3 ) {
+  public function new( ?parent : h2d.Object, x : Int = 3, y : Int = 3 ) {
     super(parent);
     cx = x;
     cy = y;
