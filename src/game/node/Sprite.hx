@@ -1,10 +1,10 @@
 package node;
 
-class Sprite extends Node {
+class Sprite extends h2d.Object {
  
   var tex : h2d.Tile;
 
-  public function new( ?parent : Node ) {
+  public function new( ?parent : h2d.Object ) {
     super(parent);
   }
 
