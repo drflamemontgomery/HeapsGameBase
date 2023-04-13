@@ -7,11 +7,13 @@ class GameScene extends h2d.Scene {
 
   var physics : phy.PhysicsManager;
 
-  public var GRID(get, never) : Int;
+  public static var GRID(get, never) : Int;
  
-  function get_GRID() {
+  static function get_GRID() {
     return 32;
   }
+
+  public static var ME(default, null) : GameScene;
 
   // LDTK Level Data
   public var cWid(default, null): Int = 0;
@@ -23,8 +25,6 @@ class GameScene extends h2d.Scene {
   public var marks : dn.MarkerMap<LevelMark>;
 
   var layers : Array<h2d.Layers>;
-
-  var root : node.Root;
 
   public function addShapeToLayer(s:phy.PhysicsShape, id:Int) {
     physics.addToLayer(s, id);
@@ -44,10 +44,6 @@ class GameScene extends h2d.Scene {
 
   function initPhysics() {
     this.physics = new phy.PhysicsManager(this);
-  }
-
-  function initRoot() {
-    this.root = new node.Root(this);
   }
 
   function initLevel() {
@@ -87,21 +83,22 @@ class GameScene extends h2d.Scene {
   }
 
   public function new() {
+    ME = this;
+
     super();
     initLayers();
     initLevel();
     initPhysics();
-    initRoot();
   }
 
 
   public function update( dt : Float ) {
     // Physics Stepping
-    root.physicsUpdate(dt);
+    Updater.physicsUpdate(this, dt);
     physics.update(); 
 
     // Idle/Process
-    root.update(dt);
+    Updater.update(this, dt);
   }
 }
 
