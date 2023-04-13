@@ -2,7 +2,7 @@ package node;
 
 
 
-class CharacterBody extends Node {
+class CharacterBody extends h2d.Object {
 
   public var debugDraw(default, set) : Bool = false;
   var debugBounds : h2d.Tile;
@@ -33,19 +33,19 @@ class CharacterBody extends Node {
     super(parent);
     cx = x;
     cy = y;
-    debugBounds = h2d.Tile.fromColor(0xFF0000, Std.int(w*GRID), Std.int(h*GRID), 0.5);
+    debugBounds = h2d.Tile.fromColor(0xFF0000, Std.int(w*GameScene.GRID), Std.int(h*GameScene.GRID), 0.5);
     debugBounds.setCenterRatio(0.5, 0.5);
   }
 
   function setSize(w : Float, h : Float) {
     this.w = w;
     this.h = h;
-    debugBounds.scaleToSize(w*GRID, h*GRID);
+    debugBounds.scaleToSize(w*GameScene.GRID, h*GameScene.GRID);
     debugBounds.setCenterRatio(0.5, 0.5);
   }
 
   function setPixelSize(w : Int, h : Int) {
-    setSize(w/GRID, h/GRID);
+    setSize(w/GameScene.GRID, h/GameScene.GRID);
   }
   
   function onPreStepX() {
@@ -65,11 +65,11 @@ class CharacterBody extends Node {
 
 
     for(body in body_cell) {
-      if(dx > 0 && scene.hasCollision(r_cx, body)) {
+      if(dx > 0 && GameScene.ME.hasCollision(r_cx, body)) {
         xr -= r_penetration;
       }
 
-      if(dx < 0 && scene.hasCollision(l_cx, body)) {
+      if(dx < 0 && GameScene.ME.hasCollision(l_cx, body)) {
         xr += 1.0 - l_penetration;
       }
       /*if(dx < 0 && xr < (w/2) && scene.hasCollision(cx-1, body)) {
@@ -96,19 +96,19 @@ class CharacterBody extends Node {
     final u_cy = Math.floor((cy + yr) - h/2);
 
     for(foot in feet_cell) {
-      if(dy > 0 && scene.hasCollision(foot, d_cy)) {
+      if(dy > 0 && GameScene.ME.hasCollision(foot, d_cy)) {
         yr -= d_penetration;
         dy = 0.0;
         isOnFloor = true;
       }
 
-      if(dy < 0 && scene.hasCollision(foot, u_cy)) {
+      if(dy < 0 && GameScene.ME.hasCollision(foot, u_cy)) {
         yr += 1.0 - u_penetration;
       }
     }
   }
 
-  override function physicsUpdate(dt : Float) {
+  public function physicsUpdate(dt : Float) {
     var steps = Math.ceil((Math.abs(dx) + Math.abs(dy)) / 0.33);
 
     if(steps > 0) {
@@ -134,9 +134,9 @@ class CharacterBody extends Node {
     }
   } 
 
-  override function update(dt : Float) {
-    this.x = (cx + xr)*GRID;
-    this.y = (cy + yr)*GRID;
+  public function update(dt : Float) {
+    this.x = (cx + xr)*GameScene.GRID;
+    this.y = (cy + yr)*GameScene.GRID;
   }
 
   override function draw( ctx : h2d.RenderContext ) {
