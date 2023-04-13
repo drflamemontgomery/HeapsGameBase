@@ -2,7 +2,7 @@ package en;
 
 class Player extends node.CharacterBody {
  
-  public function new(?parent : node.Node, x:Int, y:Int) {
+  public function new(?parent : h2d.Object, x:Int, y:Int) {
     super(parent, x, y);
     
     debugDraw = true;

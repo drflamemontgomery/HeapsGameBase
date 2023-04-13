@@ -1,11 +1,11 @@
 package en;
 
-class TestObj extends node.Node {
+class TestObj extends h2d.Object {
 
   var image : h2d.Bitmap;
   var spr : node.Sprite;
 
-  public function new( ?parent : node.Node ) {
+  public function new( ?parent : h2d.Object ) {
     super(parent);
 
     var t = h2d.Tile.fromColor(0xFF0000, 32, 64, 1.);
@@ -23,7 +23,7 @@ class TestObj extends node.Node {
   
   var t : Float = 0.0;
 
-  override function update( dt : Float ) {
+  public function update( dt : Float ) {
     t += dt*5;
     spr.scaleX = Math.sin(t)*0.25 + 0.75; 
     spr.scaleY = 1.25 - Math.sin(t)*0.25;
