@@ -4,8 +4,8 @@ class TestScene extends GameScene {
 
   public function new() {
     super();
-    new en.TestObj(root);
-    new en.Player(root, 1, 1);
+    new en.TestObj(this);
+    new en.Player(this, 1, 1);
   }
 
   override function update(dt : Float) {
