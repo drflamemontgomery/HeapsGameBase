@@ -15,6 +15,8 @@ class GameScene extends h2d.Scene {
 
   public static var ME(default, null) : GameScene;
 
+  public var renderLayer : h2d.Layers;
+
   // LDTK Level Data
   public var cWid(default, null): Int = 0;
   public var cHei(default, null): Int = 0;
@@ -24,22 +26,8 @@ class GameScene extends h2d.Scene {
   
   public var marks : dn.MarkerMap<LevelMark>;
 
-  var layers : Array<h2d.Layers>;
-
   public function addShapeToLayer(s:phy.PhysicsShape, id:Int) {
     physics.addToLayer(s, id);
-  }
-
-  function initLayers() {
-    layers = [
-      new h2d.Layers(this), // UI
-      new h2d.Layers(this), // UI_BG
-      new h2d.Layers(this), // FG
-      new h2d.Layers(this), // MAIN 
-      new h2d.Layers(this), // BG
-      new h2d.Layers(this), // SCREEN 
-    ];
-
   }
 
   function initPhysics() {
@@ -86,7 +74,6 @@ class GameScene extends h2d.Scene {
     ME = this;
 
     super();
-    initLayers();
     initLevel();
     initPhysics();
   }
