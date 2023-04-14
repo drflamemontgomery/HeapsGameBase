@@ -1,13 +1,15 @@
 package en;
 
+using LayerAdder;
 class Player extends node.CharacterBody {
  
   public function new(?parent : h2d.Object, x:Int, y:Int) {
-    super(parent, x, y);
+    super(x, y);
     
     debugDraw = true;
     setPixelSize(24, 30);
-
+    
+    this.addToLayer(parent, 10);
   }
 
   override function update( dt : Float ) {
