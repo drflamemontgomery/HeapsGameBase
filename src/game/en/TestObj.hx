@@ -1,14 +1,15 @@
 package en;
 
+using LayerAdder;
 class TestObj extends h2d.Object {
 
   var image : h2d.Bitmap;
   var spr : node.Sprite;
 
   public function new( ?parent : h2d.Object ) {
-    super(parent);
+    super();
 
-    var t = h2d.Tile.fromColor(0xFF0000, 32, 64, 1.);
+    var t = h2d.Tile.fromColor(0x00FF00, 32, 64, 1.);
     t.setCenterRatio(0.5, 1.0);
     spr = new node.Sprite(this);
     spr.setTile(t);
@@ -19,6 +20,8 @@ class TestObj extends h2d.Object {
     this.x = 100;
     this.y = 100;
     this.rotation = 0.79;
+    
+    this.addToLayer(parent, 20);
   }
   
   var t : Float = 0.0;
