@@ -1,6 +1,6 @@
 package node;
 
-class Sprite extends h2d.Object {
+class Sprite extends h2d.Drawable {
  
   var tex : h2d.Tile;
 
